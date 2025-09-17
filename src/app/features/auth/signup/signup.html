@@ -1,0 +1,133 @@
+<div class="auth-container">
+  <div class="auth-left">
+    <div class="auth-form-container">
+      <div class="logo-container">
+        <img src="assets/images/logo.png" alt="GrowCORE" class="logo">
+      </div>
+      
+      <h2 class="auth-title">Create your account</h2>
+      
+      <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="auth-form">
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <div class="input-wrapper">
+            <input
+              id="name"
+              type="text"
+              formControlName="name"
+              placeholder="Enter your full name"
+              class="form-input"
+              [class.error]="isFieldInvalid('name')"
+            >
+            <i class="input-icon name-icon"></i>
+          </div>
+          <div *ngIf="isFieldInvalid('name')" class="error-message">
+            Full name is required
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email address</label>
+          <div class="input-wrapper">
+            <input
+              id="email"
+              type="email"
+              formControlName="email"
+              placeholder="alex@email.com"
+              class="form-input"
+              [class.error]="isFieldInvalid('email')"
+            >
+            <i class="input-icon email-icon"></i>
+          </div>
+          <div *ngIf="isFieldInvalid('email')" class="error-message">
+            <span *ngIf="signupForm.get('email')?.errors?.['required']">Email is required</span>
+            <span *ngIf="signupForm.get('email')?.errors?.['email']">Please enter a valid email</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <div class="input-wrapper">
+            <input
+              id="password"
+              [type]="showPassword ? 'text' : 'password'"
+              formControlName="password"
+              placeholder="Create a password"
+              class="form-input"
+              [class.error]="isFieldInvalid('password')"
+            >
+            <i class="input-icon password-icon" (click)="togglePasswordVisibility()"></i>
+          </div>
+          <div *ngIf="isFieldInvalid('password')" class="error-message">
+            Password must be at least 6 characters long
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="confirmPassword">Confirm Password</label>
+          <div class="input-wrapper">
+            <input
+              id="confirmPassword"
+              [type]="showConfirmPassword ? 'text' : 'password'"
+              formControlName="confirmPassword"
+              placeholder="Confirm your password"
+              class="form-input"
+              [class.error]="isFieldInvalid('confirmPassword')"
+            >
+            <i class="input-icon password-icon" (click)="toggleConfirmPasswordVisibility()"></i>
+          </div>
+          <div *ngIf="isFieldInvalid('confirmPassword')" class="error-message">
+            <span *ngIf="signupForm.get('confirmPassword')?.errors?.['required']">Please confirm your password</span>
+            <span *ngIf="signupForm.get('confirmPassword')?.errors?.['passwordMismatch']">Passwords do not match</span>
+          </div>
+        </div>
+
+        <div class="form-group checkbox-group">
+          <label class="checkbox-label">
+            <input type="checkbox" formControlName="agreeToTerms" class="checkbox">
+            <span class="checkmark"></span>
+            I agree to the <a href="/terms" target="_blank">Terms of Service</a> and <a href="/privacy" target="_blank">Privacy Policy</a>
+          </label>
+          <div *ngIf="isFieldInvalid('agreeToTerms')" class="error-message">
+            You must agree to the terms and conditions
+          </div>
+        </div>
+
+        <button 
+          type="submit" 
+          class="btn btn-primary btn-block"
+          [disabled]="signupForm.invalid || loading"
+        >
+          <span *ngIf="loading" class="loading-spinner"></span>
+          Create Account
+        </button>
+
+        <div class="divider">
+          <span>OR</span>
+        </div>
+
+        <button 
+          type="button" 
+          class="btn btn-secondary btn-block"
+          (click)="navigateToLogin()"
+        >
+          Login to existing account
+        </button>
+
+        <div *ngIf="errorMessage" class="alert alert-error">
+          {{ errorMessage }}
+        </div>
+
+        <div *ngIf="successMessage" class="alert alert-success">
+          {{ successMessage }}
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="auth-right">
+    <div class="illustration-container">
+      <img src="assets/images/signup-illustration.svg" alt="Signup Illustration" class="illustration">
+    </div>
+  </div>
+</div>

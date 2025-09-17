@@ -1,0 +1,8 @@
+export enum AssessmentStatus {
+  NOT_STARTED = 'NOT_STARTED',
+  IN_PROGRESS = 'IN_PROGRESS',
+  SUBMITTED = 'SUBMITTED',
+  GRADED = 'GRADED',
+  EXPIRED = 'EXPIRED',
+}
+    
