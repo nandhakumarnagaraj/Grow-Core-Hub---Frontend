@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Assessment } from '../models/assessment';
 import { Observable } from 'rxjs';
 import { AssessmentSubmissionRequest } from '../models/assessment-submission-request';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',

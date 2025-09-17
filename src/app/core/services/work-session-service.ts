@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable, timer } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { WorkSessionStartRequest } from '../models/work-session-start-request';
 import { WorkSessionStopRequest } from '../models/work-session-stop-request';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',

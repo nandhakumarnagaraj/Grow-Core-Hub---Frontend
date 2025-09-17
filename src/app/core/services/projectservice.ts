@@ -4,6 +4,7 @@ import { ProjectType } from '../models/project-type';
 import { Project } from '../models/project';
 import { Observable } from 'rxjs';
 import { ProjectCreateRequest } from '../models/project-create-request';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { FreelancerProfile } from '../models/freelancer-profile';
 import { ProfileUpdateRequest } from '../models/profile-update-request';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
