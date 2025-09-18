@@ -266,11 +266,15 @@ import { Authservice } from '../../../core/services/authservice';
   ],
 })
 export class AdminLayoutComponent implements OnInit {
-  currentUser = this.authService.getCurrentUser();
+  currentUser: any;
 
   constructor(private authService: Authservice) {}
 
   ngOnInit(): void {
+    // Initialize currentUser
+    this.currentUser = this.authService.getCurrentUser();
+
+    // Subscribe to changes
     this.authService.currentUser$.subscribe((user) => {
       this.currentUser = user;
     });

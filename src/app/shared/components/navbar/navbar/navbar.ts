@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
 import { Authservice } from '../../../../core/services/authservice';
 import { WorkSessionService } from '../../../../core/services/work-session-service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
@@ -393,13 +394,15 @@ import { WorkSessionService } from '../../../../core/services/work-session-servi
     `,
   ],
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit, OnDestroy {
   isAuthenticated = false;
-  currentUser = this.authService.getCurrentUser();
+  currentUser: any = null;
   showUserMenu = false;
   isMenuOpen = false;
   activeSession: any = null;
   currentTimer = '00:00:00';
+
+  private subscriptions: Subscription = new Subscription();
 
   constructor(
     private authService: Authservice,
@@ -408,18 +411,36 @@ export class NavbarComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.authService.currentUser$.subscribe((user) => {
-      this.currentUser = user;
-      this.isAuthenticated = !!user;
-    });
+    // Initialize currentUser safely
+    this.currentUser = this.authService.getCurrentUser();
+    this.isAuthenticated = !!this.currentUser;
 
-    this.workSessionService.activeSession$.subscribe((session) => {
-      this.activeSession = session;
-    });
+    // Subscribe to currentUser changes
+    this.subscriptions.add(
+      this.authService.currentUser$.subscribe((user) => {
+        this.currentUser = user;
+        this.isAuthenticated = !!user;
+      })
+    );
 
-    this.workSessionService.timer$.subscribe((timer) => {
-      this.currentTimer = timer;
-    });
+    // Subscribe to active work session
+    this.subscriptions.add(
+      this.workSessionService.activeSession$.subscribe((session) => {
+        this.activeSession = session;
+      })
+    );
+
+    // Subscribe to work session timer
+    this.subscriptions.add(
+      this.workSessionService.timer$.subscribe((timer) => {
+        this.currentTimer = timer;
+      })
+    );
+  }
+
+  ngOnDestroy(): void {
+    // Prevent memory leaks
+    this.subscriptions.unsubscribe();
   }
 
   toggleUserMenu(): void {

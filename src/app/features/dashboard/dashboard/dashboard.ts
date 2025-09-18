@@ -81,7 +81,9 @@ import { UserRole } from '../../../core/models/user-role';
           </div>
           <ng-template #noApplications>
             <div class="empty-state">
-              <p>No applications yet. <a routerLink="/projects">Browse projects</a> to get started!</p>
+              <p>
+                No applications yet. <a routerLink="/projects">Browse projects</a> to get started!
+              </p>
             </div>
           </ng-template>
         </div>
@@ -137,333 +139,335 @@ import { UserRole } from '../../../core/models/user-role';
       </div>
     </div>
   `,
-  styles: [`
-    .dashboard-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 2rem;
-    }
+  styles: [
+    `
+      .dashboard-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+      }
 
-    .dashboard-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 2rem;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      padding: 2rem;
-      border-radius: 12px;
-      color: white;
-    }
-
-    .welcome-section h1 {
-      margin: 0 0 0.5rem 0;
-      font-size: 2rem;
-    }
-
-    .welcome-text {
-      margin: 0;
-      opacity: 0.9;
-    }
-
-    .user-info {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .user-avatar {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      font-weight: bold;
-    }
-
-    .user-details {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .user-name {
-      font-weight: 600;
-    }
-
-    .user-role {
-      opacity: 0.8;
-      font-size: 0.9rem;
-    }
-
-    .quick-actions {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
-      margin-bottom: 2rem;
-    }
-
-    .action-card {
-      background: white;
-      padding: 1.5rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      cursor: pointer;
-      transition: transform 0.2s ease;
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .action-card:hover {
-      transform: translateY(-2px);
-    }
-
-    .action-icon {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
-
-    .action-card h3 {
-      margin: 0 0 0.5rem 0;
-      color: #333;
-    }
-
-    .action-card p {
-      margin: 0;
-      color: #666;
-      font-size: 0.9rem;
-    }
-
-    .work-timer {
-      margin-bottom: 2rem;
-    }
-
-    .timer-card {
-      background: #e8f5e8;
-      padding: 2rem;
-      border-radius: 8px;
-      text-align: center;
-      border-left: 4px solid #28a745;
-    }
-
-    .timer-card h3 {
-      margin: 0 0 0.5rem 0;
-      color: #155724;
-    }
-
-    .project-name {
-      color: #666;
-      margin-bottom: 1rem;
-    }
-
-    .timer-display {
-      font-size: 2.5rem;
-      font-weight: bold;
-      color: #28a745;
-      margin: 1rem 0;
-    }
-
-    .dashboard-content {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-      margin-bottom: 2rem;
-    }
-
-    .applications-section,
-    .sessions-section,
-    .summary-section {
-      background: white;
-      padding: 1.5rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-
-    .summary-section {
-      grid-column: 1 / -1;
-    }
-
-    .section h2 {
-      margin: 0 0 1rem 0;
-      color: #333;
-    }
-
-    .applications-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .application-card {
-      border: 1px solid #e1e5e9;
-      border-radius: 6px;
-      padding: 1rem;
-    }
-
-    .app-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 0.5rem;
-    }
-
-    .app-header h3 {
-      margin: 0;
-      font-size: 1rem;
-    }
-
-    .status-badge {
-      padding: 0.25rem 0.75rem;
-      border-radius: 12px;
-      font-size: 0.8rem;
-      font-weight: 500;
-    }
-
-    .status-applied {
-      background: #e3f2fd;
-      color: #1976d2;
-    }
-
-    .status-eligible {
-      background: #e8f5e8;
-      color: #2e7d32;
-    }
-
-    .status-active {
-      background: #fff3e0;
-      color: #f57c00;
-    }
-
-    .status-completed {
-      background: #f3e5f5;
-      color: #7b1fa2;
-    }
-
-    .app-meta p {
-      margin: 0;
-      color: #666;
-      font-size: 0.9rem;
-    }
-
-    .app-actions {
-      margin-top: 1rem;
-    }
-
-    .sessions-list {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-
-    .session-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0.75rem;
-      background: #f8f9fa;
-      border-radius: 6px;
-    }
-
-    .session-info h4 {
-      margin: 0 0 0.25rem 0;
-      font-size: 0.9rem;
-    }
-
-    .session-info p {
-      margin: 0;
-      color: #666;
-      font-size: 0.8rem;
-    }
-
-    .session-duration {
-      color: #28a745;
-      font-weight: 500;
-    }
-
-    .summary-cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 1rem;
-    }
-
-    .summary-card {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      padding: 1rem;
-      background: #f8f9fa;
-      border-radius: 6px;
-    }
-
-    .summary-icon {
-      font-size: 1.5rem;
-    }
-
-    .summary-content h3 {
-      margin: 0;
-      color: #333;
-      font-size: 1.5rem;
-    }
-
-    .summary-content p {
-      margin: 0;
-      color: #666;
-      font-size: 0.9rem;
-    }
-
-    .empty-state {
-      text-align: center;
-      color: #666;
-      padding: 2rem;
-    }
-
-    .empty-state a {
-      color: #007bff;
-      text-decoration: none;
-    }
-
-    .btn {
-      padding: 0.5rem 1rem;
-      border-radius: 4px;
-      border: none;
-      cursor: pointer;
-      font-weight: 500;
-    }
-
-    .btn-primary {
-      background: #007bff;
-      color: white;
-    }
-
-    .btn-danger {
-      background: #dc3545;
-      color: white;
-    }
-
-    .btn:hover {
-      opacity: 0.9;
-    }
-
-    @media (max-width: 768px) {
       .dashboard-header {
-        flex-direction: column;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 2rem;
+        border-radius: 12px;
+        color: white;
+      }
+
+      .welcome-section h1 {
+        margin: 0 0 0.5rem 0;
+        font-size: 2rem;
+      }
+
+      .welcome-text {
+        margin: 0;
+        opacity: 0.9;
+      }
+
+      .user-info {
+        display: flex;
+        align-items: center;
         gap: 1rem;
+      }
+
+      .user-avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+
+      .user-details {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .user-name {
+        font-weight: 600;
+      }
+
+      .user-role {
+        opacity: 0.8;
+        font-size: 0.9rem;
+      }
+
+      .quick-actions {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+        margin-bottom: 2rem;
+      }
+
+      .action-card {
+        background: white;
+        padding: 1.5rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        transition: transform 0.2s ease;
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .action-card:hover {
+        transform: translateY(-2px);
+      }
+
+      .action-icon {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+      }
+
+      .action-card h3 {
+        margin: 0 0 0.5rem 0;
+        color: #333;
+      }
+
+      .action-card p {
+        margin: 0;
+        color: #666;
+        font-size: 0.9rem;
+      }
+
+      .work-timer {
+        margin-bottom: 2rem;
+      }
+
+      .timer-card {
+        background: #e8f5e8;
+        padding: 2rem;
+        border-radius: 8px;
         text-align: center;
+        border-left: 4px solid #28a745;
+      }
+
+      .timer-card h3 {
+        margin: 0 0 0.5rem 0;
+        color: #155724;
+      }
+
+      .project-name {
+        color: #666;
+        margin-bottom: 1rem;
+      }
+
+      .timer-display {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #28a745;
+        margin: 1rem 0;
       }
 
       .dashboard-content {
-        grid-template-columns: 1fr;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      .applications-section,
+      .sessions-section,
+      .summary-section {
+        background: white;
+        padding: 1.5rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .summary-section {
+        grid-column: 1 / -1;
+      }
+
+      .section h2 {
+        margin: 0 0 1rem 0;
+        color: #333;
+      }
+
+      .applications-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .application-card {
+        border: 1px solid #e1e5e9;
+        border-radius: 6px;
+        padding: 1rem;
+      }
+
+      .app-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.5rem;
+      }
+
+      .app-header h3 {
+        margin: 0;
+        font-size: 1rem;
+      }
+
+      .status-badge {
+        padding: 0.25rem 0.75rem;
+        border-radius: 12px;
+        font-size: 0.8rem;
+        font-weight: 500;
+      }
+
+      .status-applied {
+        background: #e3f2fd;
+        color: #1976d2;
+      }
+
+      .status-eligible {
+        background: #e8f5e8;
+        color: #2e7d32;
+      }
+
+      .status-active {
+        background: #fff3e0;
+        color: #f57c00;
+      }
+
+      .status-completed {
+        background: #f3e5f5;
+        color: #7b1fa2;
+      }
+
+      .app-meta p {
+        margin: 0;
+        color: #666;
+        font-size: 0.9rem;
+      }
+
+      .app-actions {
+        margin-top: 1rem;
+      }
+
+      .sessions-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .session-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.75rem;
+        background: #f8f9fa;
+        border-radius: 6px;
+      }
+
+      .session-info h4 {
+        margin: 0 0 0.25rem 0;
+        font-size: 0.9rem;
+      }
+
+      .session-info p {
+        margin: 0;
+        color: #666;
+        font-size: 0.8rem;
+      }
+
+      .session-duration {
+        color: #28a745;
+        font-weight: 500;
       }
 
       .summary-cards {
-        grid-template-columns: 1fr;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 1rem;
       }
-    }
-  `]
+
+      .summary-card {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem;
+        background: #f8f9fa;
+        border-radius: 6px;
+      }
+
+      .summary-icon {
+        font-size: 1.5rem;
+      }
+
+      .summary-content h3 {
+        margin: 0;
+        color: #333;
+        font-size: 1.5rem;
+      }
+
+      .summary-content p {
+        margin: 0;
+        color: #666;
+        font-size: 0.9rem;
+      }
+
+      .empty-state {
+        text-align: center;
+        color: #666;
+        padding: 2rem;
+      }
+
+      .empty-state a {
+        color: #007bff;
+        text-decoration: none;
+      }
+
+      .btn {
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        border: none;
+        cursor: pointer;
+        font-weight: 500;
+      }
+
+      .btn-primary {
+        background: #007bff;
+        color: white;
+      }
+
+      .btn-danger {
+        background: #dc3545;
+        color: white;
+      }
+
+      .btn:hover {
+        opacity: 0.9;
+      }
+
+      @media (max-width: 768px) {
+        .dashboard-header {
+          flex-direction: column;
+          gap: 1rem;
+          text-align: center;
+        }
+
+        .dashboard-content {
+          grid-template-columns: 1fr;
+        }
+
+        .summary-cards {
+          grid-template-columns: 1fr;
+        }
+      }
+    `,
+  ],
 })
 export class DashboardComponent implements OnInit {
-  currentUser = this.authService.getCurrentUser();
+  currentUser: any;
   applications: Application[] = [];
   recentSessions: WorkSession[] = [];
   activeSession: WorkSession | null = null;
@@ -478,6 +482,7 @@ export class DashboardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.currentUser = this.authService.getCurrentUser();
     this.loadDashboardData();
     this.subscribeToWorkSession();
   }
@@ -487,9 +492,9 @@ export class DashboardComponent implements OnInit {
     this.applicationService.getUserApplications().subscribe({
       next: (apps) => {
         this.applications = apps;
-        this.completedApplications = apps.filter(app => app.status === 'COMPLETED').length;
+        this.completedApplications = apps.filter((app) => app.status === 'COMPLETED').length;
       },
-      error: (error) => console.error('Error loading applications:', error)
+      error: (error) => console.error('Error loading applications:', error),
     });
 
     // Load recent work sessions
@@ -497,7 +502,7 @@ export class DashboardComponent implements OnInit {
       next: (sessions) => {
         this.recentSessions = sessions.slice(0, 5); // Latest 5 sessions
       },
-      error: (error) => console.error('Error loading sessions:', error)
+      error: (error) => console.error('Error loading sessions:', error),
     });
 
     // Load today's hours
@@ -505,16 +510,16 @@ export class DashboardComponent implements OnInit {
       next: (hours) => {
         this.todayHours = hours;
       },
-      error: (error) => console.error('Error loading today hours:', error)
+      error: (error) => console.error('Error loading today hours:', error),
     });
   }
 
   subscribeToWorkSession(): void {
-    this.workSessionService.activeSession$.subscribe(session => {
+    this.workSessionService.activeSession$.subscribe((session) => {
       this.activeSession = session;
     });
 
-    this.workSessionService.timer$.subscribe(timer => {
+    this.workSessionService.timer$.subscribe((timer) => {
       this.currentTimer = timer;
     });
   }
@@ -523,9 +528,9 @@ export class DashboardComponent implements OnInit {
     if (this.activeSession) {
       const stopRequest = {
         sessionId: this.activeSession.id,
-        notes: ''
+        notes: '',
       };
-      
+
       this.workSessionService.stopWorkSession(stopRequest).subscribe({
         next: () => {
           this.loadDashboardData(); // Refresh data
@@ -533,7 +538,7 @@ export class DashboardComponent implements OnInit {
         error: (error) => {
           console.error('Error stopping work session:', error);
           alert('Failed to stop work session');
-        }
+        },
       });
     }
   }
@@ -547,11 +552,14 @@ export class DashboardComponent implements OnInit {
       error: (error) => {
         console.error('Error signing agreement:', error);
         alert('Failed to sign agreement');
-      }
+      },
     });
   }
 
   formatStatus(status: string): string {
-    return status.replace(/_/g, ' ').toLowerCase().replace(/\b\w/g, l => l.toUpperCase());
+    return status
+      .replace(/_/g, ' ')
+      .toLowerCase()
+      .replace(/\b\w/g, (l) => l.toUpperCase());
   }
 }

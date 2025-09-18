@@ -7,7 +7,7 @@ import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout/auth-layo
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component/main-layout.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout/admin-layout';
 
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: '',
     redirectTo: '/dashboard',
@@ -73,7 +73,7 @@ const routes: Routes = [
       },
       {
         path: 'work-sessions',
-        loadComponent: () => import('./features/work-sessions/work-tracker/work-tracker/work-tracker').then(m => m.WorkTrackerComponent)
+        loadComponent: () => import('./features/work-sessions/work-tracker/work-tracker/work-tracker').then(m => m.WorkTracker)
       }
     ]
   },

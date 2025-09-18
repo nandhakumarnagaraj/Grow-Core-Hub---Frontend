@@ -200,7 +200,7 @@ import { VerificationStatus } from '../../../core/models/verification-status';
                 />
               </div>
             </div>
-            <div class="documents-list" *ngIf="profile.documents && profile.documents.length > 0">
+            <!-- <div class="documents-list" *ngIf="profile.documents && profile.documents.length > 0">
               <div *ngFor="let doc of profile.documents" class="document-item">
                 <div class="doc-info">
                   <span class="doc-name">{{ doc.fileName }}</span>
@@ -217,7 +217,7 @@ import { VerificationStatus } from '../../../core/models/verification-status';
                   </button>
                 </div>
               </div>
-            </div>
+            </div> -->
           </div>
 
           <!-- Form Actions -->
