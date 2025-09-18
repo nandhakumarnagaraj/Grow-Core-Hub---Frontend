@@ -4,14 +4,14 @@
       <div class="logo-container">
         <div class="logo">
           <svg width="120" height="40" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
-            <text x="10" y="35" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="white">
-              GrowCORE
+            <text x="15" y="35" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="white">
+              GrowCore Hub
             </text>
           </svg>
         </div>
       </div>
-
-      <h2 class="auth-title">Login into your account</h2>
+      <br><br><br><br><br><br><br><br><br><br>
+      <h2 class="auth-title" >Login into your account</h2>
 
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="auth-form">
         <div class="form-group">
@@ -28,7 +28,7 @@
             <i class="input-icon email-icon"></i>
           </div>
           <div *ngIf="isFieldInvalid('email')" class="error-message">
-            Please enter a valid email address
+            {{ getFieldErrorMessage('email') }}
           </div>
         </div>
 
@@ -39,13 +39,15 @@
               id="password"
               [type]="showPassword ? 'text' : 'password'"
               formControlName="password"
-              placeholder="Enter your password"
+              placeholder="••••••••••"
               class="form-input"
               [class.error]="isFieldInvalid('password')"
             />
             <i class="input-icon password-icon" (click)="togglePasswordVisibility()"></i>
           </div>
-          <div *ngIf="isFieldInvalid('password')" class="error-message">Password is required</div>
+          <div *ngIf="isFieldInvalid('password')" class="error-message">
+            {{ getFieldErrorMessage('password') }}
+          </div>
           <div class="forgot-password">
             <a routerLink="/auth/forgot-password">Forgot password?</a>
           </div>
@@ -54,10 +56,10 @@
         <button
           type="submit"
           class="btn btn-primary btn-block"
-          [disabled]="loginForm.invalid || loading"
+          [disabled]="loading"
         >
           <span *ngIf="loading" class="loading-spinner"></span>
-          Login now
+          LOGIN NOW
         </button>
 
         <div class="divider">
@@ -68,10 +70,6 @@
           Signup now
         </button>
 
-        <div class="create-account">
-          <a (click)="navigateToSignup()">create a account</a>
-        </div>
-
         <div *ngIf="errorMessage" class="alert alert-error">
           {{ errorMessage }}
         </div>
@@ -81,57 +79,48 @@
 
   <div class="auth-right">
     <div class="illustration-container">
-      <svg width="500" height="400" viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg" class="illustration">
-        <!-- Background circles -->
-        <circle cx="100" cy="80" r="30" fill="#f39c12" opacity="0.2"/>
-        <circle cx="400" cy="100" r="25" fill="#e67e22" opacity="0.3"/>
-        <circle cx="350" cy="300" r="35" fill="#f39c12" opacity="0.15"/>
+      <!-- Mobile device with person illustration -->
+      <div class="mobile-illustration">
+        <div class="phone">
+          <div class="phone-screen">
+            <div class="screen-content">
+              <div class="profile-section">
+                <div class="profile-icon"></div>
+                <div class="form-lines">
+                  <div class="line long"></div>
+                  <div class="line medium"></div>
+                  <div class="line short"></div>
+                  <div class="dots">••••••••</div>
+                </div>
+              </div>
+              <div class="signup-btn-mobile">SING UP</div>
+            </div>
+          </div>
+        </div>
         
-        <!-- Mobile device -->
-        <rect x="200" y="100" width="140" height="240" rx="20" fill="#34495e" stroke="#2c3e50" stroke-width="3"/>
-        <rect x="210" y="120" width="120" height="200" rx="10" fill="white"/>
+        <div class="person">
+          <div class="person-head"></div>
+          <div class="person-hair"></div>
+          <div class="person-body"></div>
+          <div class="person-arm-left"></div>
+          <div class="person-arm-right"></div>
+          <div class="person-legs"></div>
+        </div>
         
-        <!-- Mobile screen content -->
-        <rect x="220" y="140" width="100" height="8" rx="4" fill="#ff6b35"/>
-        <rect x="220" y="160" width="60" height="6" rx="3" fill="#bdc3c7"/>
-        <rect x="220" y="175" width="80" height="6" rx="3" fill="#bdc3c7"/>
-        <rect x="220" y="200" width="100" height="25" rx="12" fill="#ff6b35"/>
-        <text x="270" y="217" font-family="Arial" font-size="10" fill="white" text-anchor="middle">SIGN UP</text>
+        <div class="security-elements">
+          <div class="lock-icon">
+            <div class="lock-body"></div>
+            <div class="lock-shackle"></div>
+          </div>
+          <div class="key-icon"></div>
+        </div>
         
-        <!-- Decorative elements -->
-        <path d="M220 240 L240 260 L280 220" stroke="#ff6b35" stroke-width="3" fill="none" stroke-linecap="round"/>
-        <circle cx="300" cy="245" r="8" fill="#f39c12"/>
-        
-        <!-- Person illustration -->
-        <ellipse cx="120" cy="380" rx="40" ry="8" fill="#34495e" opacity="0.2"/>
-        
-        <!-- Person body -->
-        <ellipse cx="120" cy="320" rx="25" ry="35" fill="#ff6b35"/>
-        
-        <!-- Person head -->
-        <circle cx="120" cy="260" r="20" fill="#f4d1ae"/>
-        
-        <!-- Hair -->
-        <path d="M100 250 Q120 240 140 250 Q135 245 120 245 Q105 245 100 250" fill="#2c3e50"/>
-        
-        <!-- Arms -->
-        <ellipse cx="95" cy="310" rx="8" ry="20" fill="#f4d1ae" transform="rotate(-20 95 310)"/>
-        <ellipse cx="145" cy="310" rx="8" ry="20" fill="#f4d1ae" transform="rotate(30 145 310)"/>
-        
-        <!-- Legs -->
-        <ellipse cx="110" cy="360" rx="8" ry="25" fill="#2c3e50"/>
-        <ellipse cx="130" cy="360" rx="8" ry="25" fill="#2c3e50"/>
-        
-        <!-- Lock icon -->
-        <rect x="380" y="180" width="40" height="30" rx="5" fill="#ff6b35"/>
-        <path d="M390 180 V170 Q390 160 400 160 Q410 160 410 170 V180" stroke="#ff6b35" stroke-width="3" fill="none"/>
-        <circle cx="400" cy="195" r="3" fill="white"/>
-        
-        <!-- Floating elements -->
-        <circle cx="80" cy="200" r="4" fill="#f39c12"/>
-        <circle cx="450" cy="250" r="6" fill="#e67e22"/>
-        <circle cx="50" cy="150" r="3" fill="#ff6b35"/>
-      </svg>
+        <div class="floating-elements">
+          <div class="float-element float-1"></div>
+          <div class="float-element float-2"></div>
+          <div class="float-element float-3"></div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

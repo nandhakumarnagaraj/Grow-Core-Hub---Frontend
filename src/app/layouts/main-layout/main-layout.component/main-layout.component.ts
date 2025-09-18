@@ -19,7 +19,7 @@ import { NavbarComponent } from '../../../shared/components/navbar/navbar/navbar
   styles: [
     `
       .main-layout {
-        min-height: 100vh;
+        height: 100vh;
         display: flex;
         flex-direction: column;
       }

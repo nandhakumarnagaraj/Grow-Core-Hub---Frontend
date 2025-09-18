@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormGroup, Validators, AbstractControl, FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, Validators, AbstractControl, FormBuilder, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { Authservice } from '../../../core/services/authservice';
 import { SignupRequest } from '../../../core/models/signup-request';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-signup',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule,FormsModule],
   templateUrl: './signup.html',
   styleUrl: './signup.css',
 })
